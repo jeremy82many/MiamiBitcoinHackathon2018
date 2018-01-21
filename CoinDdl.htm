@@ -32,21 +32,7 @@
             });
 
             $("#numDdl, #coinDdl").change(function () {
-                if ($("#coinDdl").prop('selectedIndex') == 0 || $("#numDdl").prop('selectedIndex') == 0) {
-                    $(".ddlChange").html("");
-                    return;
-                }
-                var optionValue = $("#coinDdl").val();
-                var numValue = $("#numDdl").val();
-                var values = optionValue.split(",");
-                var symbol = values[0];
-                var priceUsd = values[1];
-                var id = values[2];
-                var plural = numValue == 1 ? "" : "s";
-                var msg = "Current price for one " + symbol + " in USD: $" + (priceUsd * 1).toFixed(2) + "<br/>For " + numValue + " ticket" + plural + ", you have to pay " + (numValue / priceUsd).toFixed(8) + " in " + id;
-                $("#ddlChange").html(msg);
-                var msg = "Please send " + (numValue / priceUsd).toFixed(8) + " " + symbol + " to the<br/>address below within the next 10 minutes";
-                $("#ddlChange2").html(msg);
+                // TODO - event on Select element change
             });
         });
     </script>

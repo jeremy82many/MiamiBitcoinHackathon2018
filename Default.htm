@@ -9,14 +9,14 @@
 
 
     <!-- This div goes above the QR code -->
-    <div id="ddlChange2" class="ddlChange" style="width:600px"></div>
+    <div id="ddlChange2" class="ddlChange" style="width:600px;color:mediumseagreen;margin-top:15px;font-family: Lato,Arial; font-size: 14px; font-weight: bold;"></div>
 
 
     <!-- Start - This code goes in the input form area -->
     <script src="https://code.jquery.com/jquery-3.3.0.min.js"></script>
-    <select id="coinDdl" style="border-radius: 3px; border: 1px solid rgb(133, 133, 133); transition:border-color 200ms, box-shadow 200ms; border-image: none; left: 0px; top: 0px; width: 235px; height: 25px; color: rgb(156, 156, 156); font-family: Lato; font-size: 14px; box-sizing: border-box; box-shadow: none; background-color: rgb(230, 230, 230);"></select>
+    <select id="coinDdl" style="border-radius: 3px; border: 1px solid rgb(133, 133, 133); transition:border-color 200ms, box-shadow 200ms; border-image: none; left: 0px; top: 0px; width: 235px; height: 25px; color: rgb(156, 156, 156); font-family: Lato,Arial; font-size: 14px; box-sizing: border-box; box-shadow: none; background-color: rgb(230, 230, 230);"></select>
     <br /><br />
-    <select id="numDdl" style="border-radius: 3px; border: 1px solid rgb(133, 133, 133); transition:border-color 200ms, box-shadow 200ms; border-image: none; left: 0px; top: 0px; width: 150px; height: 25px; color: rgb(156, 156, 156); font-family: Lato; font-size: 14px; box-sizing: border-box; box-shadow: none; background-color: rgb(230, 230, 230);">
+    <select id="numDdl" style="border-radius: 3px; border: 1px solid rgb(133, 133, 133); transition:border-color 200ms, box-shadow 200ms; border-image: none; left: 0px; top: 0px; width: 150px; height: 25px; color: rgb(156, 156, 156); font-family: Lato,Arial; font-size: 14px; box-sizing: border-box; box-shadow: none; background-color: rgb(230, 230, 230);">
         <option>Choose how many...</option>
         <option>1</option>
         <option>2</option>
@@ -30,13 +30,13 @@
         <option>10</option>
     </select>
     <br />
-    <div id="ddlChange" class="ddlChange" style="width:600px"></div>
+    <div id="ddlChange" class="ddlChange" style="width:600px;color:mediumseagreen;margin-top:15px;font-family: Lato,Arial; font-size: 14px; font-weight: bold;"></div>
 
     <script>
         $(function () {
             $.ajax({
                 method: "GET",
-                url: "https://api.coinmarketcap.com/v1/ticker/?limit=10",
+                url: "https://api.coinmarketcap.com/v1/ticker/?limit=20",
                 success: function (result) {
                     var emit = "<option>Choose a payment...</option>";
                     $.each(result, (index, item) => {

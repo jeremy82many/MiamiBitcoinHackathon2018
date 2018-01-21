@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Coin Bitcoin API Tester</title>
+    <style>
+        body{font-family: Lato, Arial; font-size: 14px;}
+    </style>
+</head>
+<body>
+    <h1>Coin Bitcoin API Tester</h1>
+    <p><a href="/Default.htm">Payment DDL</a> | Coin DDL</p>
+
+    <script src="https://code.jquery.com/jquery-3.3.0.min.js"></script>
+
+    API DDL<br />
+
+    <select id="coinDdl" style="border-radius: 3px; border: 1px solid rgb(133, 133, 133); transition:border-color 200ms, box-shadow 200ms; border-image: none; left: 0px; top: 0px; width: 235px; height: 25px; color: rgb(156, 156, 156); font-family: Lato,Arial; font-size: 14px; box-sizing: border-box; box-shadow: none; background-color: rgb(230, 230, 230);"></select>
+
+    <script>
+        $(function () {
+            $.ajax({
+                method: "GET",
+                url: "https://api.coinmarketcap.com/v1/ticker/?limit=20",
+                success: function (result) {
+                    var emit = "<option>Choose a coin...</option>";
+                    $.each(result, (index, item) => {
+                        emit += "<option value=\"" + item.symbol + "," + item.price_usd + "," + item.id + "\">" + item.symbol + " - " + item.id + "</option>";
+                    });
+                    $("#coinDdl").html(emit);
+                }
+            });
+
+            $("#numDdl, #coinDdl").change(function () {
+                if ($("#coinDdl").prop('selectedIndex') == 0 || $("#numDdl").prop('selectedIndex') == 0) {
+                    $(".ddlChange").html("");
+                    return;
+                }
+                var optionValue = $("#coinDdl").val();
+                var numValue = $("#numDdl").val();
+                var values = optionValue.split(",");
+                var symbol = values[0];
+                var priceUsd = values[1];
+                var id = values[2];
+                var plural = numValue == 1 ? "" : "s";
+                var msg = "Current price for one " + symbol + " in USD: $" + (priceUsd * 1).toFixed(2) + "<br/>For " + numValue + " ticket" + plural + ", you have to pay " + (numValue / priceUsd).toFixed(8) + " in " + id;
+                $("#ddlChange").html(msg);
+                var msg = "Please send " + (numValue / priceUsd).toFixed(8) + " " + symbol + " to the<br/>address below within the next 10 minutes";
+                $("#ddlChange2").html(msg);
+            });
+        });
+    </script>
+
+
+
+    <br /><br />
+    Static DDL<br />
+
+    <select id="coinDdlStatic" style="border-radius: 3px; border: 1px solid rgb(133, 133, 133); transition:border-color 200ms, box-shadow 200ms; border-image: none; left: 0px; top: 0px; width: 235px; height: 25px; color: rgb(156, 156, 156); font-family: Lato,Arial; font-size: 14px; box-sizing: border-box; box-shadow: none; background-color: rgb(230, 230, 230);">
+        <option>Choose a coin...</option>
+        <option value="BTC,11941.0,bitcoin">BTC - bitcoin</option>
+        <option value="ETH,1091.66,ethereum">ETH - ethereum</option>
+        <option value="XRP,1.42973,ripple">XRP - ripple</option>
+        <option value="BCH,1825.27,bitcoin-cash">BCH - bitcoin-cash</option>
+        <option value="ADA,0.637981,cardano">ADA - cardano</option>
+        <option value="LTC,193.982,litecoin">LTC - litecoin</option>
+        <option value="XEM,1.08449,nem">XEM - nem</option>
+        <option value="NEO,137.438,neo">NEO - neo</option>
+        <option value="XLM,0.481939,stellar">XLM - stellar</option>
+        <option value="EOS,13.2363,eos">EOS - eos</option>
+        <option value="MIOTA,2.81792,iota">MIOTA - iota</option>
+        <option value="DASH,846.167,dash">DASH - dash</option>
+        <option value="XMR,356.424,monero">XMR - monero</option>
+        <option value="TRX,0.0758495,tron">TRX - tron</option>
+        <option value="ICX,9.11556,icon">ICX - icon</option>
+        <option value="BTG,206.324,bitcoin-gold">BTG - bitcoin-gold</option>
+        <option value="QTUM,44.8607,qtum">QTUM - qtum</option>
+        <option value="ETC,31.4801,ethereum-classic">ETC - ethereum-classic</option>
+        <option value="LSK,23.0373,lisk">LSK - lisk</option>
+        <option value="XRB,18.6076,raiblocks">XRB - raiblocks</option>
+    </select>
+</body>
+</html>

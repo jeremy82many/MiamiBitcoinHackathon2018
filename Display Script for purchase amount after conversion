@@ -1,1 +1,2 @@
-    <div id="ddlChange2" class="ddlChange" style="width:600px"></div>
+    <!-- This div goes above the QR code -->
+    <div id="ddlChange2" class="ddlChange" style="width:600px;color:mediumseagreen;margin-top:15px;font-family: Lato,Arial; font-size: 14px; font-weight: bold;"></div>
